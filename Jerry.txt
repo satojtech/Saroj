@@ -1,0 +1,406 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Jerry!</title>
+    <style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .snowflakes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .snowflake {
+            position: absolute;
+            color: #fff;
+            font-size: 2rem;
+            animation: fall-snow 10s linear infinite;
+            opacity: 0.8;
+        }
+
+        @keyframes fall-snow {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+
+        .birthday-card {
+            background: #fff;
+            max-width: 500px;
+            width: 90%;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            text-align: center;
+            padding: 40px 30px;
+            position: relative;
+            z-index: 2;
+            animation: card-appear 1s ease-out;
+        }
+
+        @keyframes card-appear {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .cake-container {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .birthday-cake {
+            width: 180px;
+            height: 180px;
+            background: linear-gradient(45deg, #ffd89b, #19547b);
+            border-radius: 50% 50% 0 0;
+            position: relative;
+            margin: 0 auto 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            border: 3px solid #ffd89b;
+        }
+
+        .candle {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 8px;
+            height: 60px;
+            background: #fff;
+            border-radius: 4px;
+            z-index: 3;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+        }
+
+        .flame {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-bottom: 15px solid #ff6600;
+            animation: flicker 0.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes flicker {
+            0% { transform: translateX(-50%) scaleY(1); }
+            100% { transform: translateX(-50%) scaleY(1.2); }
+        }
+
+        .cake-image img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50% 50% 0 0;
+            object-fit: cover;
+        }
+
+        h1 {
+            color: #667eea;
+            font-size: 2.5rem;
+            margin: 20px 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .typed-message {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #333;
+            min-height: 80px;
+            margin: 20px 0;
+        }
+
+        .birthday-wishes {
+            background: linear-gradient(45deg, #ffd89b, #ffb6c1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .wishes-text {
+            color: #333;
+            font-style: italic;
+            line-height: 1.5;
+        }
+
+        .special-note {
+            font-weight: bold;
+            color: #667eea;
+            margin-top: 15px;
+        }
+
+        .interactive-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: #fff;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 20px auto;
+            display: block;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .interactive-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+        }
+
+        @media (max-width: 600px) {
+            .birthday-card {
+                width: 95%;
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .birthday-cake {
+                width: 150px;
+                height: 150px;
+            }
+        }
+
+        .balloons {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .balloon {
+            position: absolute;
+            bottom: 0;
+            width: 40px;
+            height: 60px;
+            background: linear-gradient(to bottom, #ff99cc, #ff66aa);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .balloon:nth-child(2) {
+            background: linear-gradient(to bottom, #99ff99, #66aa66);
+            animation-delay: 2s;
+        }
+
+        .balloon:nth-child(3) {
+            background: linear-gradient(to bottom, #ffff99, #ffaa66);
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-30vh) rotate(180deg);
+            }
+            100% {
+                transform: translateY(0) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="snowflakes"></div>
+
+    <div class="balloons">
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+    </div>
+
+    <div class="birthday-card">
+        <div class="cake-container">
+            <div class="birthday-cake">
+                <div class="candle">
+                    <div class="flame"></div>
+                </div>
+            </div>
+            <div class="cake-image">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/3035972e-3bcd-48e3-b089-9908cdf6f796.png" alt="Elegant three-tier birthday cake with chocolate fudge, fresh berries, and golden decorations on a crystal platter in a festive dining room" />
+            </div>
+        </div>
+
+        <h1>Happy Birthday, Jerry!</h1>
+
+        <div class="typed-message" id="typed-message"></div>
+
+        <div class="birthday-wishes">
+            <p class="wishes-text">
+                May your special day be filled with endless joy, laughter, and unforgettable memories.<br>
+                You deserve all the happiness in the world today and beyond!
+            </p>
+            <p class="special-note">With lots of love and best wishes!</p>
+        </div>
+
+        <button class="interactive-btn" onclick="celebrate()">Celebrate with More Magic!</button>
+    </div>
+
+    <script>
+        // Generate floating snowflakes
+        function createSnowflakes() {
+            const snowflakesContainer = document.querySelector('.snowflakes');
+            for (let i = 0; i < 50; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.className = 'snowflake';
+                snowflake.textContent = '❄️';
+                snowflake.style.left = Math.random() * 100 + '%';
+                snowflake.style.animationDelay = Math.random() * 10 + 's';
+                snowflake.style.fontSize = (Math.random() * 1.5 + 1) + 'rem';
+                snowflakesContainer.appendChild(snowflake);
+            }
+        }
+
+        // Typewriter effect
+        let currentMessageIndex = 0;
+        let currentCharIndex = 0;
+        let isDeleting = false;
+        const messages = [
+            "Happy Birthday, dear Jerry!",
+            "May your day be as amazing as you are.",
+            "Wishing you loads of laughter and fun.",
+            "May this year bring you everything your heart desires!",
+            "You're special, and I'm so lucky to know you! 🎉"
+        ];
+        const typingDelay = 100;
+        const deletingDelay = 50;
+        const pauseBetween = 2000;
+
+        function typeWriter() {
+            const element = document.getElementById('typed-message');
+            const currentMessage = messages[currentMessageIndex];
+
+            if (!isDeleting) {
+                element.textContent = currentMessage.substring(0, currentCharIndex + 1);
+                currentCharIndex++;
+
+                if (currentCharIndex === currentMessage.length) {
+                    isDeleting = true;
+                    setTimeout(typeWriter, pauseBetween);
+                    return;
+                }
+            } else {
+                element.textContent = currentMessage.substring(0, currentCharIndex - 1);
+                currentCharIndex--;
+
+                if (currentCharIndex === 0) {
+                    isDeleting = false;
+                    currentMessageIndex = (currentMessageIndex + 1) % messages.length;
+                }
+            }
+
+            setTimeout(typeWriter, isDeleting ? deletingDelay : typingDelay);
+        }
+
+        // Celebrate function with fireworks effect
+        function celebrate() {
+            for (let i = 0; i < 20; i++) {
+                createFirework();
+            }
+        }
+
+        function createFirework() {
+            const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#ffeb3b', '#ff9800'];
+            const firework = document.createElement('div');
+
+            firework.style.position = 'absolute';
+            firework.style.width = '10px';
+            firework.style.height = '10px';
+            firework.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            firework.style.borderRadius = '50%';
+            firework.style.left = Math.random() * 100 + 'vw';
+            firework.style.top = '100vh';
+            firework.style.zIndex = '9999';
+            firework.style.animation = 'explode 2s ease-out forwards';
+
+            document.body.appendChild(firework);
+
+            // Remove firework after animation
+            setTimeout(() => {
+                firework.remove();
+            }, 2000);
+        }
+
+        // CSS animation for fireworks
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes explode {
+                0% {
+                    transform: translateY(0) scale(1);
+                    opacity: 1;
+                }
+                20% {
+                    transform: translateY(-50vh) scale(1.5);
+                    opacity: 0.8;
+                }
+                50% {
+                    transform: translateY(-80vh) scale(2);
+                    opacity: 0.6;
+                }
+                100% {
+                    transform: translateY(-100vh) scale(0.5);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Initialize everything when page loads
+        window.addEventListener('load', function() {
+            createSnowflakes();
+            typeWriter();
+
+            // Position balloons randomly
+            const balloons = document.querySelectorAll('.balloon');
+            balloons.forEach((balloon) => {
+                balloon.style.left = Math.random() * 90 + 'vw';
+            });
+        });
+
+        // Add touch support for mobile
+        if ('ontouchstart' in window) {
+            document.addEventListener('touchend', function(e) {
+                if (e.changedTouches[0].clientY < 50) {
+                    celebrate();
+                }
+            });
+        }
+    </script>
+</body>
+</html>
+</content>
+</create_file>
